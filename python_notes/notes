@@ -1,0 +1,57 @@
+2017/12
+
+#use correct python version and pip
+python3 -m pip install package
+
+#pip may attach to 2.x or 3 depending on path
+pip install pacakge
+
+#__mail__.py designages main for package entry point
+
+spam/
+	__init__.py
+	__main__.py
+	foo.py
+	bar.py
+
+python3 -m spam    #run package as main    #explicitly marks hte netry point (good)
+
+#with __main__.py,  python3 can run directory as a script
+python3 spam 
+
+#also works for zip file
+python3 -m zipfile -c spam.zip spam/*
+python3 spam.zip
+
+rm -rf __pychache__/
+
+#cat zip file append to text file, and python3 can execute 
+cat smap.zip >> spam
+chmod +x spam
+./spam
+
+#prepend a zip file with #! to make it executable 
+python3 -m zipfile -c spam.zip spam/*
+echo -e '#!/usr/bin/env python3\n' > spamapp
+cat spam.zip >> spamapp
+chmod +x spamapp
+./spamapp
+
+
+#if code is not on path it will not import
+
+.egg file are directories or zip files with extra metadata (for package managers)
+python3 -m zipfile -l blah-1.0-py3.4.egg
+blah.py
+foo.py
+...
+
+##python debug
+python3 -vv
+
+##whem import modules python looks for c extensions *.so, py source file, compiled py file __pycache__/spam.cpython-34.pyc
+
+
+
+
+
