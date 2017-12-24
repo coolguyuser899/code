@@ -186,13 +186,13 @@
 # + 1 or more
 # * 0 or more
 #
-import re   #search for patter in text
-# # match = re.search('iig', 'called piiig')
-# # print(match.group())   ##if not found, return None
-def Find(pat, text):
-    match = re.search(pat, text)
-    if match: print(match.group())
-    else: print('not found')
+# import re   #search for patter in text
+# # # match = re.search('iig', 'called piiig')
+# # # print(match.group())   ##if not found, return None
+# def Find(pat, text):
+#     match = re.search(pat, text)
+#     if match: print(match.group())
+#     else: print('not found')
 #
 # #Find('iigs', 'called piiig')   #return when first occurance found
 # #Find('...g', 'called piiig')    #any 3 chars and g, search from left to righ
@@ -223,4 +223,92 @@ def Find(pat, text):
 
 # m = re.findall(r'([\w.]+)@([\w.]+)', 'blah first.last@gmail.com foo@bar', re.IGNORECASE)    #use IGNORECASE flag
 # print(m)   #output [('first.last', 'gmail.com'), ('foo', 'bar')]
+
+######### end of day 2 part 1
+
+######### start of day 2 part 2, subprocess 3.x, commands in 2.x
+# import sys
+# import os
+#
+# def List(dir):
+#     filenames = os.listdir(dir)
+#     for filename in filenames:
+#         path = os.path.join(dir, filename)
+#         print(path)
+#         print(os.path.abspath(path))
+#
+# def main():
+#     List(sys.argv[1])
+#
+# if __name__ == '__main__':
+#     main()
+#
+# os.path.exists('/tmp/foo')  #True
+# os.path.exists('/tmp/bar')  #False
+#
+# import shutil  #shell utility
+# shutil.copy(source, copy)
+
+# import os
+# import subprocess   ##commands module removed in python3
+# import sys
+#
+# def List(dir):
+#     cmd = 'ls -l ddd' + dir
+#     print('about to do this:', cmd)
+#     # return
+#     (status, output) = subprocess.getstatusoutput(cmd)
+#     if status:
+#         # print(sys.stderr + 'there was an error:', output)
+#         sys.stderr.write('there was an error:', output)
+#         sys.exit(1)
+#     print(output)
+#
+# def main():
+#     List(sys.argv[1])
+#
+# if __name__ == '__main__':
+#     main()
+
+######### start of day 2 part , exception
+# import sys
+# def Cat(filename):
+#     try:
+#         f = open(filename)
+#         text = f.read()
+#         print('----', filename)
+#         print(text)
+#     except IOError:
+#         print('IOError', filename)
+#
+# def main():
+#     args = sys.argv[1:]
+#     for arg in args:
+#         Cat(arg)
+#
+# if __name__ == '__main__':
+#     main()
+#
+# import urllib.request
+# with urllib.request.urlopen('http://python.org/') as response:
+#     html = response.read()
+#     print(html)
+#
+# urllib.request.urlretrieve('http://google.com/intl/en_ALL/images/logo.gif', 'blah.gif')   #download file locally as blah.gif
+#
+######### end of day 2 part 3, exception
+
+######### start of day 2 part 4, list comprehension
+a = ['a', 'b', 'c']
+b = [1, 2, 3]
+result = []
+[ print(len(s))  for s in a ]
+
+[ print(num**2) for num in b if num > 2]
+
+import os
+import re
+os.listdir('.')
+
+[ print(f) for f in os.listdir('.') if re.search(r'\w+.py', f)]
 
