@@ -52,6 +52,66 @@ python3 -vv
 ##whem import modules python looks for c extensions *.so, py source file, compiled py file __pycache__/spam.cpython-34.pyc
 
 
+python3.6 -m pip install tensorflow
 
+##virtualenv
+
+virtualenv --system-site-packages -p /usr/bin/python3.5 ~/tensorflow/
+
+>>> import tensorflow as tf
+>>> hello = tf.constant('Hello, TensorFlow!')
+>>> sess = tf.Session()
+
+# use of _ in python
+# 1
+Underscore _ is considered as "I don't Care" or "Throwaway" variable in Python
+The python interpreter stores the last expression value to the special variable called _.
+>>> 10
+10
+>>> _
+10
+>>> _ * 3
+30
+
+#2
+The underscore _ is also used for ignoring the specific values. If you don’t need the specific values or the values are not used, just assign the values to underscore.
+Ignore a value when unpacking
+x, _, y = (1, 2, 3)
+
+>>>x
+1
+>>>y
+3
+
+Ignore the index
+for _ in range(10):
+    do_something()
+
+# 3
+For translation lookup in i18n (see the gettext documentation for example), as in code like:
+raise forms.ValidationError(_("Please enter a correct username"))
+
+to avoid conflicting, some pepole likes to use "__" double underscore as throwable variable
+
+why rgb color take number of 256
+rgb is stored in 8 bits, from 0 - 255, means 256 intensities per color channel
+e.g.
+color turquoise:
+r: 64
+g: 224
+b: 208
+computer stores as binary
+r: 01000000
+g: 11100000
+b: 11010000
+or hbexadicimal in
+40 E0 D0
+
+# HDF5 Hierahchical Data File
+file format for numerical data, giant library
+datasets large size > 1tb, fast slicing, compression
+groups - dictionaries, nesting
+attributes - metadata, key values
+HDFView - tool to view data in file
 
 

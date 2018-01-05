@@ -204,45 +204,6 @@ with tf.Session("grpc://worker7:2222") as sess:
         sess.run(train_op)
 
 ####
-##tf end to end dataset examples
-##https://github.com/jasonbaldridge/try-tf
-
-#python packages
-python3.6 -m pip install sklearn
-python3.6 -m pip install scipy
-python3.6 -m pip install matplotlib
-
-#install r for dataset generation
-brew tap homebrew/science
-brew install r
-
-Rscript --version
-R scripting front-end version 3.4.3 (2017-11-30)
-
-#linear data, generate sample data
-cd try-tf/simdata
-Rscript --version
-R scripting front-end version 3.4.3 (2017-11-30)
-
-#create 2 dimension sample data
-Rscript generate_linear_data.R    #Rplots.pdf created for plot graph
-
-#moon data generate_moon_data.py
-python3.6 -m pip install sklearn
-python3.6 -m pip install scipy
-
-
-python3.6 generate_moon_data.py > moon.txt
-cat moon.txt > moon_data_train.csv
-Rscript plot_data.R   #create a graph
-
-#saturn data
-Rscript generate_saturn_data.R  #change sigma value to see difference
-Rscript plot_data.R
-
-#see hyper plane graph
-$ R
-source('plot_hyperplane.R')
 quit()
 
 ####linear data and graph
@@ -250,22 +211,251 @@ python3.6 softmax.py --train simdata/linear_data_train.csv --test simdata/linear
 
 ##moon data run twice
 python3.6 softmax.py --train simdata/moon_data_train.csv --test simdata/moon_data_eval.csv --num_epochs 10
-Accuracy: 0.858
 
-python3.6 hidden.py --train simdata/moon_data_train.csv --test simdata/moon_data_eval.csv --num_epochs 100 --num_hidden 5
-Accuracy: 0.968
+####Learning materials
 
-##saturn data
-python3.6 softmax.py --train simdata/saturn_data_train.csv --test simdata/saturn_data_eval.csv --num_epochs 100
-Accuracy: 0.46
+Michael Nielsen's book
+Andrew Ng's class
+How Convolutional Neural Networks work - https://www.youtube.com/watch?v=FmpDIaiMIeA
 
-python3.6 hidden.py --train simdata/saturn_data_train.csv --test simdata/saturn_data_eval.csv --num_epochs 100 --num_hidden 15
-Accuracy: 1.0
 
-##create log for tensorboard
-$ python3.6 annotated_softmax.py --train simdata/linear_data_train.csv --test simdata/linear_data_eval.csv --num_epochs 5 --verbose False
-Accuracy: 0.995
+"""
+each connection has a different weight value
+bias is the property of the neuron
+layer is a stack of neurons, input, hidden, output layers
+stride is the pixel when slide image window
+convolutional layer: a mathematical operation to filter patterns, most important is filter size
+pooling layer: to reduce spatial size (width and height, not depth), with stride of 2, size reduced by half
+fully connected layer: each neuron in a layer receives input from all the neurons in the previous layer
+weights(w) and bias(b: parameters of network
+learning rate: backward propagation during gradient descent, how fast do we change the training parameter
+cost: indicates if training is going the right direction, when cost reduces, accuracy increases
+model: after training done, the parameter and architecture is saved in binary model file
+inference or prediction: load model and calculate probability of new image
+"""
 
-$ tensorboard --logdir=try_tf_logs/
-Starting TensorBoard b'47' at http://0.0.0.0:6006
+Activation function
+sigmoid function S(x) = e pow (x) / e pow (x+1)
+if x close to -1 S(x) = -1
+if x close to +1 S(x) = +1
+if x close to 0.0 S(x) = -1 < x < +1
+
+RELU (rectified linear unit) transfer output to either 0 or itself
+f(x) = max(0, max)
+if x < =0, f(x) = 0
+if x > 0, f(x) = x
+
+VGG16 is the a convolution network which won imagenet competition in 2014
+
+
+# from keras.models import Sequential
+# from keras.layers import Dense, Activation
+#
+# model = Sequential([
+#     Dense(5, input_shape=(3,), activation='relu'),
+#     Dense(2, activation='softmax'),
+# ])
+#
+# # print(model)
+#
+# import matplotlib.pyplot as plt
+# import matplotlib.image as mpimg
+# image = mpimg.imread("NN.png")
+# plt.imshow(image)
+# plt.show()
+
+#activation function, defines output giving input, output = activation(weighted sum of inputs)
+# from keras.models import Sequential
+# from keras.layers import Dense, Activation
+#
+# model = Sequential ([
+#     Dense(5, input_shape=(3,), activation='relu')
+# ])
+#
+# ##same as the following code
+# model = Sequential()
+# model.add(Dense(5, input_shape=3,))
+# model.add(Activation('relu'))
+
+#Training a neural network
+#SGD stochastic gradient descent, to minimize the loss (incremental gradient descent)
+
+#Learing process of neural network
+# epoch - one pass of data
+# learning rate: between 0.1 and 0.001
+# d(loss) / d(weight) x 0.001
+# Adam = variation of SDG for optimization
+
+import keras
+from keras import backend as K
+from keras.models import Sequential
+from keras.layers import Activation
+from keras.layers.core import Dense
+from keras.optimizers import Adam
+from keras.metrics import categorical_crossentropy
+#
+# #build a model, input layer 1, 2 hidden layer
+# model = Sequential([
+#     Dense(16, input_shape=(1,), activation='relu'),
+#     Dense(32, activation='relu'),
+#     Dense(2, activation='softmax')
+# ])
+#
+# #Adam optimizer, learning rate = 0.0001, loss = type, matrics = what is to print out
+# model.compile(Adam(lr=.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# for a single-input model with 2 classes (binary):
+
+#### keras example
+# model = Sequential()
+# model.add(Dense(1, input_dim=784, activation='softmax'))
+# model.compile(optimizer='rmsprop',
+#               loss='binary_crossentropy',
+#               metrics=['accuracy'])
+#
+# # generate dummy data
+# import numpy as np
+# scaled_train_samples = np.random.random((1000, 784))
+# train_labels = np.random.randint(2, size=(1000, 1))
+#
+# #np array training data, labels, how many piece data feed at once, how many passes
+# model.fit(scaled_train_samples, train_labels, batch_size=10, epochs=20, shuffle=True, verbose=2)
+
+####loss function
+# minimize lost with continuous update weights and model during training
+# MSE mean squared error
+
+
+##Different dataset used in train, test, validation
+#train data set, used to compute again and again
+#overfitting, model is good at training data predication, but not good at validation data set
+#testset, different from train and validation data, has to be unlabeled, without knowing what it is
+
+# import numpy as np
+# scaled_train_samples = np.random.random_sample((10,))
+# train_labels = np.random.randint(2, size=(10, 1))
+# print(scaled_train_samples, train_labels)
+#
+# model = Sequential([
+#     Dense(16, input_shape=(1,), activation='relu'),
+#     Dense(32, activation='relu'),
+#     Dense(2, activation='softmax')
+# ])
+#
+# #Adam optimizer, learning rate = 0.0001, loss = type, matrics = what is to print out
+# model.compile(Adam(lr=.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+# #use 20% of training set as validation set
+# model.fit(scaled_train_samples, train_labels, validation_split=0.20, batch_size=10, epochs=20, shuffle=True, verbose=2)
+
+# ##or use separate set
+# valid_set = [(sample, label),(sample, label),....,(sample, label),(sample, label)]
+# model.fit(scaled_train_samples, train_labels, validation_data=valid_set, batch_size=10, epochs=20, shuffle=True, verbose=2)
+
+
+##overfitting, model is good at classfifying and predicting training set, but not good at data which is trained on or test set
+# if validation accuracy is worse then training, overfitting indicator
+# model is not generalized
+# solution, 1) add more data to training set
+# 2) data augmentation (rotation, scaling, flip),
+# 3) reduce complexity of model
+# 4) dropout of nodes at certain layer
+
+##underfitting
+# model is not good at data which is trained on
+# solution: 1) add complexity to model, model is too simple, increase neurons or layers
+# 2) add more features to the training set
+# 3) reduce dropout, define percentage of dropout
+
+### Regularization in neural network, reduce overfitting or reduce variant by not penalizing complexity
+# L2 regularization loss + x
+# from keras import regularizers
+# model = Sequential([
+#     Dense(16, input_shape=(1,), activation='relu'),
+#     Dense(32, activation='relu', kernel_regularizer=regularizers.l2(0.01)),
+#     Dense(16, input_shape=(1,), activation='sigmoid'),
+# ])
+
+#### learning rate, often between 0.01 to 0.0001
+# model.compile(Adam(lr=0.0001), loss='sparse_categorical_crossentrypy', metrics=['accuracy'])
+# model.optimizer.lr = 0.01
+# model.optimizer.lr
+
+
+#### Batch size number of sample passed to network (as a group)
+# value must be tested and tuned for better result
+#batch_size=10   #pass data set 10 at a time
+
+#### Fine tuning a neural network or transfer learning
+#use exisiing model by remove last layer or remove/add more hidden layer for mew model
+
+#### Data augmentation, create new data based on existing data, horizontal flip
+#rotate, shift width, shift hight, zooming, varying color, flip
+
+
+####predicating - have model to predict
+#pass un-labelled data to match model on test data
+# predictions = model.predict(scaled_test_sample, batch_size=10, verbose=0)
+# for i in predictions:
+#     print(i)
+
+
+####Supervised learning - training and validation data are labeled
+#data (sample, label) -> output, they are used to learn data
+#
+# import keras
+# from keras import backend as K
+# from keras.models import Sequential
+# from keras.layers import Activation
+# from keras.layers.core import Dense
+# from keras.optimizers import Adam
+#
+# model = Sequential([
+#     Dense(16, input_shape=(2,), activation='relu'),
+#     Dense(32, activation='relu'),
+#     Dense(2, activation='sigmoid')
+# ])
+#
+# model.compile(Adam(lr=0.0001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+# #weight, height
+# train_samples = [[150, 67], [130, 60], [200, 65], [125, 52], [230, 72], [181, 70]]
+# # 0: male
+# # 1: female
+# train_labels = [1, 1, 0, 1, 0, 0]
+# model.fit(x=train_samples, y=train_labels, batch_size=3, epochs=10, shuffle=True, verbose=2)
+
+####Unsupervised learning
+#training data is not labeled, no way to measure the accuracy
+#one popular is clusterign algorithm, create learning structure
+#autoencoder - handwritten number as input and reconstruct image
+#original input -> encoder -> compressed representation-> reconstructed input
+#why we need unsupervised learing and reconstructing image
+#denoise image, and reconstruct better quality image
+
+
+####Semi-supervised learning using both labeled and unlabled data
+#use pseudo-labeling
+#add label in predict process
+
+
+####Convolutional neural network (CNNs)
+#so far the most popular network for analyzing image, but it can also used ofr data classification as well
+#convolutional layer use filters to detect pattern
+#MLP multi-layer percepron
+#hidden layer is convolutional layers
+#filter slide over each 3x3 set of pixels from the input itself until it slid over every 3x3 block
+#this sliding is referred to as convolving
+
+
+#Why image is always divided by 255
+
+Typically, RGB values are encoded as 8-bit integers, which range from 0 to 255.
+It's an industry standard to think of 0.0f as black and 1.0f as white (max brightness).
+To convert [0, 255] to [0.0f, 1.0f] all you have to do is divide by 255.0f.
+
+#
+Most of the advanced deep learning models like VGG, ResNet etc. require square images as input,
+usually with a pixel size of 224x224.
+Since, the VGG model is trained on all the image resized to 224x224 pixels,
+so for any new image that the model will make predictions upon has to be resized to these pixel values.
+
 

@@ -13,12 +13,16 @@ def extract_names(filename):
     f = open(filename, 'rU')
     text = f.read()
 
+    ##<caption><h2>Popularity in 2008</h2></caption>
+
     year_match = re.search((r'Popularity\sin\s(\d\d\d\d)'), text)  #\s = whitespace
     if not year_match:
         print_err('Could\'nt find the year')
         sys.exit(1)
     year = year_match.group(1)
     names.append(year)
+
+    ###<tr align="right"><td>9</td><td>Christopher</td><td>Elizabeth</td>
 
     tuples = re.findall(r'<td>(\d+)</td><td>(\w+)</td>\<td>(\w+)</td>', text)
 

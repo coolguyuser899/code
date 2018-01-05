@@ -1,0 +1,11 @@
+This code is from the following link and tuturial, very little places updated to accommdate latest version update
+
+from werkzeug.utils import secure_filename
+# import StringIO  #deprecated
+from io import StringIO
+
+#code
+https://github.com/sankit1/cv-tricks.com/tree/master/Tensorflow-tutorials/freeze_model_and_deploy
+
+#tutorial
+http://cv-tricks.com/how-to/freeze-tensorflow-models/

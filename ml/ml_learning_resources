@@ -1,0 +1,29 @@
+Michael Nielsen's book
+Andrew Ng's classes
+
+#Video
+How do convolutional neural networks work? - http://brohrer.github.io/how_convolutional_neural_networks_work.html
+#Very good information on how CNN works
+
+Standard Univ Intro to Tensorflow - https://www.youtube.com/watch?v=PicxU81owCs
+
+Easy image classification with tf - http://tamilking.download/video?v=easy_image_classification_with_tensorflow
+
+Deep Learning and ML intro - https://www.youtube.com/watch?v=gZmobeGL0Yg&index=1&list=PLZbbT5o_s2xq7LwI2y8_QtvuXZedL6tQU
+#Very good short session explaining main concepts and kera sample codes
+
+
+#Reading list
+(% = w/ code sample)
+
+Tensorflow link - https://www.tensorflow.org/get_started/get_started
+ML learning tf example % - https://github.com/sankit1/cv-tricks.com
+
+Building Autoencoder in Keras % -  https://blog.keras.io/building-autoencoders-in-keras.html
+
+Jeremy Howard lectures - https://www.youtube.com/redirect?v=YRhxdVk_sIs&event=video_description&redir_token=4my9NrDNd4k90C31M_LoYBAWS3p8MTUxNTE3OTk1NkAxNTE1MDkzNTU2&q=http%3A%2F%2Fcourse.fast.ai%2Flessons%2Flesson4.html
+
+How convolutional neural networks see the world % - https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+
+Japanese cucumber farmer sorting program with tf - http://workpiles.com/2017/08/ccb9-proto3-description/
+https://www.youtube.com/watch?v=PY-PN5xfw_0
