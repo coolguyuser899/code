@@ -1,0 +1,3 @@
+# pdf to ocr tool
+https://hackernoon.com/building-a-gas-pump-scanner-with-opencv-python-ios-116fe6c9ae8b
+
