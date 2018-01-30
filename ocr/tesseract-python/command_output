@@ -1,0 +1,58 @@
+This command program is similar to ocrmypdf, but very simple
+
+# command run
+python 3.6   image_text.py
+
+# output
+
+Intro and prerequisites
+
+The purpose of this article is to teach you how to set up a Wordpress + MySQL development
+environment on your machine. I like local development with Docker, because it gives me a
+couple of valuable benefits. Some of these benefits are the following:
+
+0 a well separated development environment on my machine,
+0 my production and development environments use the exact same Docker image,
+0 I can easily bring up a development container of various Wordpress versions,
+
+0 deployment is a breeze,
+0 Idon’t need to install all the messy dev tools on my shiny new MacBook Pro (yeah, I’m an
+
+orderly person).
+
+In order to enjoy the above benefits, you need to install the Booker engine on your machine
+first. We are lucky, because I just bought a new Mac, so you can see the native Docker for
+Mac installation in the video. There is not much to write about it, it’s just a wizard that you
+should follow. Just go to https://www.docker.com/products/docker#/mac and follow the
+
+steps in my video.
+
+We’ll use a SQL client during this tutorial, so please make sure that your preferred SQL client
+is available on your machine. If you don’t know what to use, check out my favorite for the
+
+Mac; Sequel Pro.
+After we sorted out the installation here is what we will do:
+
+pull the MySQL (MariaDB) image from the Docker store
+store data outside the container
+
+run the MariaDB container
+
+pull the Wordpress image
+
+@PPNT‘
+
+run the Wordpress container
+
+Process finished with exit code 0
+
+
+# create a pdf file from image file with same file name.pdf
+tesseract sample1.png phototest pdf
+
+# create txt file from image file with .txt
+tesseract sample1.png txt
+
+
+
+

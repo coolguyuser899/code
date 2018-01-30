@@ -1,0 +1,12 @@
+# check imagemagick library
+which convert
+/usr/local/bin/convert
+
+# convert pdf to image file
+convert -density 300 target.pdf -depth 8 -strip -background white -alpha off out.tiff
+
+# run cmd
+# make sure image file has correct orientation
+
+tesseract sample1.png eng
+
