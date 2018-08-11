@@ -1,0 +1,62 @@
+# install python3.6.5 on windows, python 2.7 is old version, still used widely, python 3.7 latest new release, some library may not support, try 3.6.5 is good start to learn python3 
+https://www.python.org/downloads/release/python-365/
+
+# python official document, can download pdf zip on local pc for offline reading
+https://docs.python.org/3/archives/python-3.7.0-docs-pdf-a4.zip
+# other format available
+https://docs.python.org/3/download.html
+
+# learn python url, you can open python IDE and follow code at left box
+https://www.learnpython.org
+
+# learn python book with comprehensive, good reading
+http://www.dsf.unica.it/~fiore/LearningPython.pdf
+
+# another book for python
+http://www.souravsengupta.com/cds2015/python/LPTHW.pdf
+
+# basic python tutorial, you can follow after windows install 
+https://www.w3schools.com/python/default.asp
+
+# python3 tutorial pdf  
+https://www.cs.uky.edu/~keen/115/Haltermanpythonbook.pdf
+
+# python ide (integrated development environment), free community version
+https://www.jetbrains.com/pycharm/
+
+## Installing Jupyter with pip, an easy notebook style python editor
+http://jupyter.org/install
+
+As an existing or experienced Python user, you may wish to install Jupyter using Python’s package manager, pip, instead of Anaconda.
+
+If you have Python 3 installed (which is recommended):
+python3 -m pip install --upgrade pip
+python3 -m pip install jupyter
+
+If you have Python 2 installed:
+python -m pip install --upgrade pip
+python -m pip install jupyter
+
+Congratulations, you have installed Jupyter Notebook! To run the notebook, run the following command at the Terminal (Mac/Linux) or Command Prompt (Windows):
+jupyter notebook
+
+
+#####
+# create a github account, sign up, create new repository (or folder)
+https://github.com/
+
+# github use git commands to manage repository
+# console change tutorial
+https://guides.github.com/activities/hello-world/
+
+# github help page
+https://help.github.com
+
+# git command for source code management utility
+https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project
+
+
+### python machine learning
+https://github.com/rasbt/python-machine-learning-book
+
+
