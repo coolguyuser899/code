@@ -106,7 +106,7 @@ kubernetes cluster components
 -control plane 
 -work node 
 
-kubernetes objects
+kubernetes objects (dependency graph)
 -pod/deployment
 -service/ingress
 -network 
@@ -166,7 +166,10 @@ extended berkeley packet filter / express data path
 interest facts about k8s security 
 -kubernetes source code wordcloud
 -10 kubernetes best practices wordcloud
--express data path used in facebook, 
+-express data path used in facebook
+
+built in and open source tools for k8s (map graph, wave style, 3d rotating)
+
 
 #3 
 demos 
