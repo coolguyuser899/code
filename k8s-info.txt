@@ -1,0 +1,217 @@
+k8s is a control loop 
+observe -> diff -> act ->
+
+aws ack 
+
+dev team 
+s3 cr / deploy / rbac 
+control plane -> etcd 
+replace separate aws api with standard k8s spec crd resources 
+aws s3 ack controller -> services in aws 
+ops team 
+
+
+aws controller for k8s - the aws universe of sevices, now kubeified 
+new ack project , open souce cncf project which bridges k8s and aws services 
+
+to create  / use aws services,they are not k8s 
+console
+aws cli tool
+cloud formation 
+terraform 
+
+can aws resources be create using standard manifest yml file?
+ack service controller , boom, 
+allow developers familiar to k8s who can use aws in k8s way 
+without leaving k8s 
+k8s stores the desired resource state 
+ack contoller handles the lifecycle of aws managed service resources 
+no cloudformation benhd the scenes
+improve user experience 
+not eks specific, runs on any k9s 
+
+
+is a redesign /rethink of aws operation / aso in 2018
+
+don't want to have a super user / god level scope role for all aws services 
+but prefer fine grained service level controller 
+everything , including controller implementations is code-generated 
+with 175 service apis, hand building controller is not feasible 
+incluidng to aws linkage.go , ack runtime, combining model file with truth of api 
+
+must be in rbac
+must be in namespace 
+secret uses reeference / name / key (not pwd)
+tags, rate limititng, throttling supporting 
+
+s3, sns, sqs, ecr, dynamodb, api gateway
+https://github.com/aws/aws-controllers-k8s
+
+cross plane adoption / 
+helpful for integrating k8s with aws without having to depend ono eks 
+
+use k8s api to describe not just k8s objects, but also resources on which you applications depends, ack , use ack to describe and manage their lifecycles, 
+
+
+
+what is k8s
+what is k8s really 
+what is not k8s 
+k8s cluster components
+k8s objects
+beyond k8s (control loop, ack amazon controller for k8s) 
+interesting facts about k8s 
+
+k8s security 
+overview 
+can we use k8s to secure k8s clusters / to certain extent when used properly
+everything is a file on linux 
+treat global as a single one computer
+ebpf / xdp / isovalent / cilium
+cloud native security 4c
+interest facts about k8s security 
+
+demos 
+rbac 
+network policy
+ebpf
+cilium 
+
+summary 
+telsa hack
+cookoo's egg
+winning without fighting 5 factors and art of war
+winning without fighting formula 
+code
+exit(0)
+
+
+#1
+what is kubernetes
+-greek word helmsmanship, pilot, abbreviated to k8s
+-orcherastrator for container appliccations 
+-open source project for microservice deployment 
+
+what is kubernetes really 
+-a database
+-an api server 
+-control loop (spec, status, define, diff, act)
+
+what is not kubernetes 
+-not an orchestation platform, loose independent, pluggable components
+-not a platform for service, but a platfom for platform 
+-not just for container applications
+
+kubernetes cluster components
+-control plane 
+-work node 
+
+kubernetes objects
+-pod/deployment
+-service/ingress
+-network 
+-config/secrets
+-storage
+-network 
+-job/cron jobs (before 1.25 timezone is not in spec to avoid complications)
+-service account, role, rolebinding, namespace, quota
+
+beyond k8s (control loop, ack amazon controller for )
+-custom resouce definition
+-operator
+-example amazon controller for kubernettes 
+-container application orchestration is not the complete story 
+
+interesting facts about k8s 
+-souce code, wordcloud
+-github ranking, 3000 contributors
+-549 release in past 8 years, 
+-workload scheduler, chubby, borg, to api + docker 
+
+#2
+k8s security 
+
+overview 
+-cloud native cloud native servey 2017, 2022
+-sans session mentioned low pass rate on kubernetes certifications
+-steep learning curl, new concepts and contant changes
+
+can we use k8s to secure k8s clusters?
+-yes to certain extent
+-has built in featues 
+-security features are improving 
+-support 3 minor versions
+
+introducing cloud native 4Cs
+-code 
+-container
+-cluster (kubernetes)
+-cloud / corp data center
+
+kubernetes runs in cluster of machines or vm 
+-mainly on linux, because of chmod, cgroup, container runtime 
+-pod / containers runs on linux server 
+-linux pholophy, everything is a file on linux (key point)
+
+treat global as a single one computer
+-kubernetes triggered another wave of distributed system innovation
+-cloud native presents build once run anywhere 
+-both opportunity and challenges (docker engine, side car overhead)
+
+extended berkeley packet filter / express data path
+-biggest linux kernel revolation in past 20 years 
+-programmable kernel runtime software
+-allow observability, networking, security 
+
+interest facts about k8s security 
+-kubernetes source code wordcloud
+-10 kubernetes best practices wordcloud
+-express data path used in facebook, 
+
+#3 
+demos 
+rbac (3 ubuntu nodes)
+network policy (3 ubuntu nodes)
+ebpf (fedora 1 node)
+cilium (minikube)
+
+#4
+summary 
+a kubernetes hack
+-2 conditions must be met 
+-open url
+-admin privilege of dashboard process 
+
+cookoo's egg
+-winning cyber spy war 
+-art of fighting 
+
+art of war 
+-winning without fighting 5 factors
+-art of war pholosophies
+-know self know thee, hund battles hund win
+
+formula of winning 
+-success  = f ( knowledge, skills, talent) power of people 
+-doing and learing are fundermental in today's IT world
+-opportunities for both business and adversaries 
+
+what next / code snippet
+-labs, ideas, 
+-thank you
+-learning envs 
+
+exit(0)
+-last slide 
+
+
+
+
+
+
+
+
+
+
+
+
